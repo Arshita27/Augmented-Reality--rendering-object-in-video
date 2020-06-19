@@ -42,7 +42,7 @@ def run(cfg, ar, ref_img, frame):
 
     projection = ar.projection_matrix(H)
                     # project cube or model
-    frame = ar.render(frame, projection, raw_image_list[0], False)
+    frame = ar.render(frame, projection, raw_image_list[0], True)
 
     return frame
     # cv2.imwrite(os.path.join(cfg.DATASET.OUTPUT_DIR, '{}_frame2.jpg'.format(i)), frame)

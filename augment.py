@@ -170,6 +170,8 @@ class AR():
             if color is False:
                 cv2.fillConvexPoly(img, imgpts, (137, 27, 211))
             else:
+                # if face[-1]:
+                __import__("pdb").set_trace()
                 color = hex_to_rgb(face[-1])
                 color = color[::-1]  # reverse
                 cv2.fillConvexPoly(img, imgpts, color)
