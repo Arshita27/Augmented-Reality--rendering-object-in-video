@@ -1,0 +1,16 @@
+DATASET:
+  INPUT_DIR: "test"
+  REF_IMG: "ref.jpg"
+  VIDEO_PATH: "test/vid1.mp4"
+  OUTPUT_DIR: "results"
+  RENDERED_OBJ: "test/low-poly-fox-by-pixelmannen.obj"
+
+FEATURES:
+  FEATURE_DESCRIPTORS: "SIFT" #['SIFT', 'SURF',  ORB]
+  FEATURE_MATCHING: (Brute_Force, NORM_L2) #(Brute_Force, NORM_HAMMING)
+  FEATURE_MATCHING_THRESHOLD: 0.85
+
+CAMERA_PARAMETERS: [[800, 0, 320], [0, 800, 240], [0, 0, 1]]
+
+RENDERING:
+  SCALE_FACTOR: 5
