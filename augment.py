@@ -123,6 +123,8 @@ class AR():
         """
         From the camera calibration matrix and the estimated homography
         compute the 3D projection matrix
+
+        NOTE: taken from https://bitesofcode.wordpress.com/2017/09/12/augmented-reality-with-python-and-opencv-part-1/
         """
 
         camera_parameters = np.array(self.cfg.CAMERA_PARAMETERS)
@@ -151,6 +153,9 @@ class AR():
     def render(self, img, projection, model, color=False):
         """
         Render a loaded obj model into the current video frame
+
+        NOTE: taken from https://bitesofcode.wordpress.com/2017/09/12/augmented-reality-with-python-and-opencv-part-1/
+
         """
         scale_factor = self.cfg.RENDERING.SCALE_FACTOR
         scale_matrix = np.eye(3) * scale_factor
