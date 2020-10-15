@@ -77,29 +77,29 @@ I have tried to make this repository as simple as possible. There are only two t
 
 1. __config.yml__ file:
 
-This yaml file contains the following fields:
+  This yaml file contains the following fields:
 
-* DATASET:
+  * DATASET:
 
-  - INPUT_DIR: Path to the folder where all the images are stored. (default=test)
-  - REF_IMG: The reference image that we are looking for in every video frame.
-  - VIDEO_PATH: path where the video file is saved.
-  - OUTPUT_DIR: Path to the folder where all the results should be stored. (default=results)
-  - RENDERED_OBJ: path to the .obj file wthat you wish to render in the video frame.
+    - INPUT_DIR: Path to the folder where all the images are stored. (default=test)
+    - REF_IMG: The reference image that we are looking for in every video frame.
+    - VIDEO_PATH: path where the video file is saved.
+    - OUTPUT_DIR: Path to the folder where all the results should be stored. (default=results)
+    - RENDERED_OBJ: path to the .obj file wthat you wish to render in the video frame.
 
-* FEATURES:
-  - FEATURE_DESCRIPTORS: Default is set (Other choices are provided in comments)
-  - FEATURE_MATCHING: Default is set (Other choices are provided in comments)
-  - FEATURE_MATCHING_THRESHOLD: Default is set (Other choices are provided in comments)
+  * FEATURES:
+    - FEATURE_DESCRIPTORS: Default is set (Other choices are provided in comments)
+    - FEATURE_MATCHING: Default is set (Other choices are provided in comments)
+    - FEATURE_MATCHING_THRESHOLD: Default is set (Other choices are provided in comments)
 
-* CAMERA_PARAMETERS:
-  - INTRINSIC: intrinsic camera parameters which is a 3x3 matrix (list of list here)
+  * CAMERA_PARAMETERS:
+    - INTRINSIC: intrinsic camera parameters which is a 3x3 matrix (list of list here)
 
-* RENDERING:
-  - SCALE_FACTOR:
+  * RENDERING:
+    - SCALE_FACTOR:
 
-One can simply change the parameters in the config file to try the effect of the different techniques.
+  One can simply change the parameters in the config file to try the effect of the different techniques.
 
-Command to run the program python -m run --c [path to config.yml]
+2. Command to run the program  ```python -m run --c [path to config.yml]```
 
-I have kept the path to config.yml as an argument so that the user can have multiple config files corresponding to different projects (with different images and varied feature attributes)
+  I have kept the path to config.yml as an argument so that the user can have multiple config files corresponding to different projects (with different images and varied feature attributes)
