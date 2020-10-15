@@ -26,29 +26,31 @@ def run(cfg, ar, ref_img, frame):
 
     matches = ar.get_best_matches(gray_image_list[0:2], kps_list[0:2], descs_list[0:2], )
 
-    H = ar.get_homography_matrix(matches, kps_list[0:2])
+    if len(matches) >= 4:
+        H = ar.get_homography_matrix(matches, kps_list[0:2])
 
-    ht, wd  = raw_image_list[0].shape[0], raw_image_list[0].shape[1]
+        ht, wd  = raw_image_list[0].shape[0], raw_image_list[0].shape[1]
 
-    pts = np.float32([[0, 0],  [0, ht],  [wd , ht ], [wd , 0], ]).reshape(-1, 1, 2)
+        pts = np.float32([[0, 0],  [0, ht],  [wd , ht ], [wd , 0], ]).reshape(-1, 1, 2)
 
-    dst = cv2.perspectiveTransform(pts, H)
+        dst = cv2.perspectiveTransform(pts, H)
 
-    frame = cv2.polylines(raw_image_list[1], [np.int32(dst)], True, 255, 3, cv2.LINE_AA)
+        frame = cv2.polylines(raw_image_list[1], [np.int32(dst)], True, 255, 2, cv2.LINE_AA)
 
-    cv2.imwrite(os.path.join(cfg.DATASET.OUTPUT_DIR, 'frame.jpg'), frame)
+        # cv2.imwrite(os.path.join(cfg.DATASET.OUTPUT_DIR, 'frame.jpg'), frame)
 
-    # ####################################
+        # ####################################
 
-    projection = ar.projection_matrix(H)
-                    # project cube or model
-    frame = ar.render(frame, projection, raw_image_list[0], True)
+        projection = ar.projection_matrix(H)
+
+        frame = ar.render(frame, projection, raw_image_list[0])
+
+    else:
+        print("Insufficient matches found!")
 
     return frame
-    # cv2.imwrite(os.path.join(cfg.DATASET.OUTPUT_DIR, '{}_frame2.jpg'.format(i)), frame)
 
-
-
+import time
 if __name__== "__main__":
 
     cfg_file = "config.yml"
@@ -64,14 +66,21 @@ if __name__== "__main__":
 
     cap = cv2.VideoCapture(cfg.DATASET.VIDEO_PATH)
 
+    count = 0
     while(cap.isOpened()):
+        start_time = time.time()
         ret, frame = cap.read()
 
+        cv2.imwrite('frame.png', frame)
         frame2 = run(cfg, ar, ref_img, frame)
 
+        count +=1
         cv2.imshow('frame',frame2)
+        # print(time.time() - start_time)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
+
     cap.release()
     cv2.destroyAllWindows()
+    print(count)

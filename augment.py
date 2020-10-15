@@ -127,7 +127,7 @@ class AR():
         NOTE: taken from https://bitesofcode.wordpress.com/2017/09/12/augmented-reality-with-python-and-opencv-part-1/
         """
 
-        camera_parameters = np.array(self.cfg.CAMERA_PARAMETERS)
+        camera_parameters = np.array(self.cfg.CAMERA_PARAMETERS.INTRINSIC)
         # Compute rotation along the x and y axis as well as the translation
         homography = homography * (-1)
         rot_and_transl = np.dot(np.linalg.inv(camera_parameters), homography)
@@ -135,6 +135,7 @@ class AR():
         col_2 = rot_and_transl[:, 1]
         col_3 = rot_and_transl[:, 2]
         # normalise vectors
+        # find lambda term and divide all the columns with lambda
         l = math.sqrt(np.linalg.norm(col_1, 2) * np.linalg.norm(col_2, 2))
         rot_1 = col_1 / l
         rot_2 = col_2 / l
@@ -176,7 +177,7 @@ class AR():
                 cv2.fillConvexPoly(img, imgpts, (137, 27, 211))
             else:
                 # if face[-1]:
-                __import__("pdb").set_trace()
+                # __import__("pdb").set_trace()
                 color = hex_to_rgb(face[-1])
                 color = color[::-1]  # reverse
                 cv2.fillConvexPoly(img, imgpts, color)
