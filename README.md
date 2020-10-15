@@ -31,15 +31,15 @@ The link provided above gives a very detailed explanation on this topic. To cut 
 
     Let's start by first describing the homography matrix mentioned above:
 
-    <!-- <figure>
+    <figure>
       <img src="test/homography.png" height="125" width="229">
       <font size="1">
       <figcaption>Source: F. Moreno </figcaption>
-    </figure> -->
+    </figure>
 
     We have the calibration matrix or Intrinisc matrix (blue shaded)and external calibration matrix or extrinic matrix (red shaded). The extrinsic matrix is made up of rotation and translation matrix. On the left hand side we have the u, v coordinates (in the image plane) of a given point p (any 3D point denoted as [x,y,z]) expressed in the camera coordinate.  The combination of intrinsic and extrinsic camera parameters is called the projective/homography matrix.
 
-    <img src="test/Screenshot at 2020-10-14 19:37:21.png", width="349", height="212">
+    <img src="test/Screenshot at 2020-10-14 19:37:21.png" width="349" height="212">
 
     We  assume that any position on the flat surface plane (reference image) can be described by a 3D position <b>p</b> = [x, y, z]<sup>T</sup>. Here, the  z-coordinate represents directions perpendicular to the plane, and is hence always zero. This modifies the above equation to <b>p</b> = [x, y, 0]<sup>T</sup>.
 
